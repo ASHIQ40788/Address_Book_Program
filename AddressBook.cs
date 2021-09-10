@@ -51,8 +51,7 @@ namespace Address_Book
                 Console.Write($"Would you like to update {originalName}'s name or address? TYPE - 'Name' for name and 'Address' for address: ");
                 string entryToUpdate = Console.ReadLine().ToLower();
 
-                //, (entryToUpdate == "address") ? "address" : "name"
-                Console.Write($"Please enter changes to the {entryToUpdate} here: ");
+                Console.Write($"Please enter changes to the {entryToUpdate} here: ");//, (entryToUpdate == "address") ? "address" : "name"
                 string userUpdatedEntry = Console.ReadLine();
 
                 int index = GetEntryIndex(originalName);
@@ -86,6 +85,7 @@ namespace Address_Book
         {
             return GetEntryIndex(name) != -1;
         }
+
         public void RemoveEntry(string name)
         {
             var index = GetEntryIndex(name);
@@ -94,6 +94,20 @@ namespace Address_Book
                 contacts[index] = null;
                 Console.WriteLine("{0} removed from contacts", name);
             }
+        }
+
+        public string ViewContactsList()
+        {
+            string contactList = "";
+            foreach (Contact contact in contacts)
+            {
+                if (contact == null)
+                {
+                    continue;
+                }
+                contactList += String.Format("Name: {0} -- Address: {1}" + Environment.NewLine, contact.Name, contact.Address);
+            }
+            return (contactList != String.Empty) ? contactList : "Your Address Book is empty.";
         }
     }
 }

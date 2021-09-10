@@ -10,7 +10,19 @@ namespace Address_Book
     {
         static void Main(string[] args)
         {
+
             AddressBook addressBook = new AddressBook();
+
+            void Menu()
+            {
+                Console.WriteLine("TYPE:");
+                Console.WriteLine("'Add' to add a contact: ");
+                Console.WriteLine("'View' to view the list of contacts: ");
+                Console.WriteLine("'Remove' to select and remove a contact: ");
+                Console.WriteLine("'Update' to select and update a contact: ");
+                Console.WriteLine("'Quit' at anytime to exit: ");
+            }
+
             void UpdateAddressBook(string userInput)
             {
                 string name = "";
@@ -25,7 +37,7 @@ namespace Address_Book
                         switch (name)
                         {
                             case "quit":
-                                break;
+                            break;
                             default:
                                 Console.Write("Enter an address: ");
                                 address = Console.ReadLine();
@@ -53,9 +65,7 @@ namespace Address_Book
                                                 break;
                                         }
                                         break;
-                                
-
-                                    case "remove":
+                                        case "remove":
                                         Console.Write("Enter a name to remove: ");
                                         name = Console.ReadLine();
                                         switch (name)
@@ -67,18 +77,16 @@ namespace Address_Book
                                                 break;
                                         }
                                         break;
-
+                                    case "view":
+                                        Console.WriteLine(addressBook.ViewContactsList());
+                                        break;
                                     case "update":
-                                                Console.WriteLine("Please enter the name of the Contact you wish to update");
-                                                name = Console.ReadLine();
-                                                addressBook.UpdateContact(name);
-                                                break;
-                                        
+                                        Console.WriteLine("Please enter the name of the Contact you wish to update");
+                                        name = Console.ReadLine();
+                                        addressBook.UpdateContact(name);
+                                        break;
                                 }
-
                         }
-                                
-                        
                 }
             }
         }
