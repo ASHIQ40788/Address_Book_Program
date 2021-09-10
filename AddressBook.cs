@@ -86,5 +86,14 @@ namespace Address_Book
         {
             return GetEntryIndex(name) != -1;
         }
+        public void RemoveEntry(string name)
+        {
+            var index = GetEntryIndex(name);
+            if (index != -1)
+            {
+                contacts[index] = null;
+                Console.WriteLine("{0} removed from contacts", name);
+            }
+        }
     }
 }

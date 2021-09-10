@@ -51,16 +51,29 @@ namespace Address_Book
                                                         break;
                                                 }
                                                 break;
-                                          
-                                            case "view":
-                                                Console.WriteLine(addressBook.ViewContactsList());
+                                        }
+                                        break;
+                                
+
+                                    case "remove":
+                                        Console.Write("Enter a name to remove: ");
+                                        name = Console.ReadLine();
+                                        switch (name)
+                                        {
+                                            case "quit":
                                                 break;
-                                            case "update":
+                                            default:
+                                                addressBook.RemoveEntry(name);
+                                                break;
+                                        }
+                                        break;
+
+                                    case "update":
                                                 Console.WriteLine("Please enter the name of the Contact you wish to update");
                                                 name = Console.ReadLine();
                                                 addressBook.UpdateContact(name);
                                                 break;
-                                        }
+                                        
                                 }
 
                         }
