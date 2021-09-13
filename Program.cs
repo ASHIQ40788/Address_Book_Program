@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Address_Book
 {
@@ -13,14 +9,16 @@ namespace Address_Book
 
             AddressBook addressBook = new AddressBook();
 
+            PromptUser();
+
             void Menu()
             {
                 Console.WriteLine("TYPE:");
-                Console.WriteLine("'Add' to add a contact: ");
-                Console.WriteLine("'View' to view the list of contacts: ");
-                Console.WriteLine("'Remove' to select and remove a contact: ");
-                Console.WriteLine("'Update' to select and update a contact: ");
-                Console.WriteLine("'Quit' at anytime to exit: ");
+                Console.WriteLine("'Add' -------->> add a contact: ");
+                Console.WriteLine("'View'-------->> view the list of contacts: ");
+                Console.WriteLine("'Remove' ------->> select and remove a contact: ");
+                Console.WriteLine("'Update' -------->> select and update a contact: ");
+                Console.WriteLine("'Quit' ------>> anytime to exit: ");
             }
 
             void UpdateAddressBook(string userInput)
@@ -29,64 +27,66 @@ namespace Address_Book
                 string address = "";
                 string city = "";
                 string state = "";
+                
+                //converting all strings into lower case.
                 switch (userInput.ToLower())
                 {
                     case "add":
-                        Console.Write("Enter a name: ");
+                        Console.Write("Enter a name of the person: ");
                         name = Console.ReadLine();
                         switch (name)
                         {
                             case "quit":
-                            break;
+                                break;
                             default:
-                                Console.Write("Enter an address: ");
+                                Console.Write("Enter an address of the person: ");
                                 address = Console.ReadLine();
                                 switch (address)
                                 {
                                     case "quit":
                                         break;
-                                        Console.Write("Enter a city: ");
-                                        city = Console.ReadLine();
-                                        switch (city)
-                                        {
-                                            case "quit":
-                                                break;
-                                            default:
-                                                Console.Write("Enter an state: ");
-                                                state = Console.ReadLine();
-                                                switch (a)
-                                                {
-                                                    case "quit":
-                                                        break;
-                                                    default:
-                                                        addressBook.AddEntry(name, address, city, state);
-                                                        break;
-                                                }
-                                                break;
-                                        }
-                                        break;
-                                        case "remove":
-                                        Console.Write("Enter a name to remove: ");
-                                        name = Console.ReadLine();
-                                        switch (name)
-                                        {
-                                            case "quit":
-                                                break;
-                                            default:
-                                                addressBook.RemoveEntry(name);
-                                                break;
-                                        }
-                                        break;
-                                    case "view":
-                                        Console.WriteLine(addressBook.ViewContactsList());
-                                        break;
-                                    case "update":
-                                        Console.WriteLine("Please enter the name of the Contact you wish to update");
-                                        name = Console.ReadLine();
-                                        addressBook.UpdateContact(name);
+
+                                    default:
+                                        addressBook.AddEntry(name, address, city, state);
                                         break;
                                 }
+                                break;
                         }
+                        break;
+                    case "remove":
+                        Console.Write("Enter a name to remove: ");
+                        name = Console.ReadLine();
+                        switch (name)
+                        {
+                            case "quit":
+                                break;
+                            default:
+                                addressBook.RemoveEntry(name);
+                                break;
+                        }
+                        break;
+                    case "view":
+                        Console.WriteLine(addressBook.ViewContactsList());
+                        break;
+                    case "update":
+                        Console.WriteLine("Please enter the name of the Contact which you like to update");
+                        name = Console.ReadLine();
+                        addressBook.UpdateContact(name);
+                        break;
+                }
+            }
+
+
+            //local method
+            void PromptUser()
+            {
+                Menu();
+                string userInput = "";
+                while (userInput != "quit")
+                {
+                    Console.WriteLine("What would you like to do?");
+                    userInput = Console.ReadLine();
+                    UpdateAddressBook(userInput);
                 }
             }
         }
